@@ -39,6 +39,10 @@ describe Account do
       subject.deposit(200)
       expect(subject.balance).to eq(1200)
     end
+
+    it "does not allow deposit of negative amount and show error notice" do
+      expect{subject.deposit(-1)}.to output("Can not deposit negative amount\n").to_stdout
+    end
   end
 
 end

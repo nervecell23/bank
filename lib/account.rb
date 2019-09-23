@@ -26,6 +26,11 @@ class Account
   end
 
   def deposit(amount)
+    if is_negative?(amount)
+      puts "Can not deposit negative amount"
+      return
+    end
+    
     @balance += amount
   end
 
