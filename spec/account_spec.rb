@@ -8,6 +8,11 @@ describe Account do
     # expect(subject.balance).to eq(0)
   end
 
+  it "can be added a initial balance when created" do
+    new_subject = Account.new(1000)
+    expect(new_subject.balance).to eq(1000)
+  end
+
   describe "#show_balance" do
     it "it displays the balance" do
       expect{subject.show_balance}.to output("Your balance: 0\n").to_stdout
