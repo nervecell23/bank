@@ -10,4 +10,8 @@ class Account
   def show_balance
     puts "Your balance: #{@balance}"
   end
+
+  def withdraw(amount)
+    @balance -= amount
+  end
 end

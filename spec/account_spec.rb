@@ -19,4 +19,12 @@ describe Account do
     end
   end
 
+  describe "#withdraw" do
+    it "deducts the amount from balance" do
+      subject = Account.new(1000)
+      subject.withdraw(500)
+      expect(subject.balance).to eq(500)
+    end
+  end
+
 end
