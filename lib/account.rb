@@ -41,6 +41,13 @@ class Account
     create_transaction(amount, nil)
   end
 
+  def display_transactions
+    if @transaction_list.empty?
+      puts "There is no transaction"
+      return
+    end
+  end
+
   private
   def enough_balance?(amount)
     (amount <= @balance)? true : false

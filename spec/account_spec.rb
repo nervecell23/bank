@@ -69,4 +69,10 @@ describe Account do
     end
   end
 
+  describe "#display_transactions" do
+    it "display error notice when there is no transaction" do
+      expect{subject.display_transactions}.to output("There is no transaction\n").to_stdout
+    end
+  end
+
 end
