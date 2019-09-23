@@ -31,6 +31,7 @@ describe Account do
 
     it "does not allow withdrawing negative amount and show error notice" do
       expect{subject.withdraw(-1)}.to output("Can not withdraw negative amount\n").to_stdout
+      expect(subject.balance).to eq(1000)
     end
   end
 
@@ -42,6 +43,7 @@ describe Account do
 
     it "does not allow deposit of negative amount and show error notice" do
       expect{subject.deposit(-1)}.to output("Can not deposit negative amount\n").to_stdout
+      expect(subject.balance).to eq(1000)
     end
   end
 
