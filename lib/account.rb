@@ -28,6 +28,7 @@ class Account
     end
 
     @balance -= amount
+    create_transaction(0, amount)
   end
 
   def deposit(amount)

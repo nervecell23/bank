@@ -48,18 +48,24 @@ describe Account do
     end
   end
 
-  describe "#add_deposit_record" do
-    it "creates transaction object with proper attributes" do
-      transaction_inst_double = double("transaction_inst")
-      transaction_class_double = double("transaction_class")
-      new_account = Account.new(1000, transaction_class_double)
-      datetime = DateTime.now.to_date
+  describe "#create_transaction" do
+    let(:transaction_class_double){double("transaction_class")}
+    let(:transaction_inst_double){double("transaction_inst")}
+    let(:new_account){Account.new(1000, transaction_class_double)}
+    let(:datetime){DateTime.now.to_date}
 
+    it "creates transaction instance for deposit" do
       expect(transaction_class_double).to receive(:new).with(datetime, 500, 0, 1500).
         and_return(transaction_inst_double)
 
       new_account.deposit(500)
+    end
 
+    it "create transaction instance for withdraw" do
+      expect(transaction_class_double).to receive(:new).with(datetime, 0, 450, 550).
+        and_return(transaction_inst_double)
+
+      new_account.withdraw(450)
     end
   end
 
