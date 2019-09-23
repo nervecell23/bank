@@ -8,7 +8,7 @@ describe Account do
     # expect(subject.balance).to eq(0)
   end
 
-  it "can be added a initial balance when created" do
+  it "can be added an initial balance when created" do
     expect(subject.balance).to eq(1000)
   end
 
