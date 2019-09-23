@@ -15,7 +15,7 @@ describe Account do
 
   describe "#show_balance" do
     it "it displays the balance" do
-      expect{subject.show_balance}.to output("Your balance: 1000.0\n").to_stdout
+      expect{subject.show_balance}.to output("Your balance: 1000.00\n").to_stdout
     end
   end
 
@@ -52,7 +52,7 @@ describe Account do
     let(:transaction_class_double){double("transaction_class")}
     let(:transaction_inst_double){double("transaction_inst")}
     let(:new_account){Account.new(1000.0, transaction_class_double)}
-    let(:datetime){DateTime.now.to_date}
+    let(:datetime){DateTime.now}
 
     it "creates transaction instance for deposit" do
       expect(transaction_class_double).to receive(:new).with(datetime, 500.0, nil, 1500.0).

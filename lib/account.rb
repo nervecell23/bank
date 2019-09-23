@@ -13,7 +13,7 @@ class Account
   end
 
   def show_balance
-    puts "Your balance: #{@balance}"
+    puts "Your balance: #{"%.2f" % @balance}"
   end
 
   def withdraw(amount)
@@ -46,6 +46,12 @@ class Account
       puts "There is no transaction"
       return
     end
+
+    puts "date || credit || debit || balance"
+
+    @transaction_list.reverse_each do |transaction|
+      puts "#{transaction.transaction_date.strftime("%d/%m/%Y")} || #{formatter(transaction.credit)}|| #{formatter(transaction.debit)}|| #{"%.2f" % transaction.balance}"
+    end
   end
 
   private
@@ -58,7 +64,12 @@ class Account
   end
 
   def create_transaction(credit, debit)
-    date_now = DateTime.now.to_date
+    date_now = DateTime.now
     @transaction_list.push(@transaction_class.new(date_now, credit, debit, @balance))
+  end
+
+  # add a space after credit or debit if it is not nil
+  def formatter(attribute)
+    return ("%.2f" % attribute) + " " unless attribute == nil
   end
 end
