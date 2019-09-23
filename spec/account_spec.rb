@@ -26,6 +26,11 @@ describe Account do
 
     it "does not proceed in case of not enough balance and show error notice" do
       expect{subject.withdraw(1001)}.to output("Not enough balance\n").to_stdout
+      expect(subject.balance).to eq(1000)
+    end
+
+    it "does not allow withdrawing negative amount and show error notice" do
+      expect{subject.withdraw(-1)}.to output("Can not withdraw negative amount\n").to_stdout
     end
   end
 
