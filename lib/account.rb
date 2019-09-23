@@ -12,6 +12,15 @@ class Account
   end
 
   def withdraw(amount)
+    if !enough_balance?(amount)
+      puts("Not enough balance")
+      return
+    end
     @balance -= amount
+  end
+
+  private
+  def enough_balance?(amount)
+    (amount <= @balance)? true : false
   end
 end
