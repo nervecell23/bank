@@ -1,4 +1,5 @@
-require 'account'
+require "account"
+require "date"
 
 describe Account do
 
@@ -44,6 +45,21 @@ describe Account do
     it "does not allow deposit of negative amount and show error notice" do
       expect{subject.deposit(-1)}.to output("Can not deposit negative amount\n").to_stdout
       expect(subject.balance).to eq(1000)
+    end
+  end
+
+  describe "#add_deposit_record" do
+    it "creates transaction object with proper attributes" do
+      transaction_inst_double = double("transaction_inst")
+      transaction_class_double = double("transaction_class")
+      new_account = Account.new(1000, transaction_class_double)
+      datetime = DateTime.now.to_date
+
+      expect(transaction_class_double).to receive(:new).with(datetime, 500, 0, 1500).
+        and_return(transaction_inst_double)
+
+      new_account.deposit(500)
+
     end
   end
 
