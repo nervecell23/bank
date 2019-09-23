@@ -28,7 +28,7 @@ class Account
     end
 
     @balance -= amount
-    create_transaction(0.0, amount)
+    create_transaction(nil, amount)
   end
 
   def deposit(amount)
@@ -38,7 +38,7 @@ class Account
     end
 
     @balance += amount
-    create_transaction(amount, 0.0)
+    create_transaction(amount, nil)
   end
 
   private

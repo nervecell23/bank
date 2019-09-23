@@ -55,14 +55,14 @@ describe Account do
     let(:datetime){DateTime.now.to_date}
 
     it "creates transaction instance for deposit" do
-      expect(transaction_class_double).to receive(:new).with(datetime, 500.0, 0.0, 1500.0).
+      expect(transaction_class_double).to receive(:new).with(datetime, 500.0, nil, 1500.0).
         and_return(transaction_inst_double)
 
       new_account.deposit(500.0)
     end
 
     it "create transaction instance for withdraw" do
-      expect(transaction_class_double).to receive(:new).with(datetime, 0, 450.0, 550.0).
+      expect(transaction_class_double).to receive(:new).with(datetime, nil, 450.0, 550.0).
         and_return(transaction_inst_double)
 
       new_account.withdraw(450.0)
