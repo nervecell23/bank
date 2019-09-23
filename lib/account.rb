@@ -4,7 +4,7 @@ require "date"
 class Account
   attr_reader :balance
 
-  DEFAULT_BALANCE = 0;
+  DEFAULT_BALANCE = 0.0;
 
   def initialize(initial_balance = DEFAULT_BALANCE, transaction_class = Transaction)
     @balance = initial_balance
@@ -28,7 +28,7 @@ class Account
     end
 
     @balance -= amount
-    create_transaction(0, amount)
+    create_transaction(0.0, amount)
   end
 
   def deposit(amount)
@@ -38,7 +38,7 @@ class Account
     end
 
     @balance += amount
-    create_transaction(amount, 0)
+    create_transaction(amount, 0.0)
   end
 
   private
