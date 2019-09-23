@@ -34,4 +34,11 @@ describe Account do
     end
   end
 
+  describe "#deposit" do
+    it "add specified amount to balance" do
+      subject.deposit(200)
+      expect(subject.balance).to eq(1200)
+    end
+  end
+
 end

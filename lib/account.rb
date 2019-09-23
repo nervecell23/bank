@@ -21,8 +21,12 @@ class Account
       puts "Can not withdraw negative amount"
       return
     end
-    
+
     @balance -= amount
+  end
+
+  def deposit(amount)
+    @balance += amount
   end
 
   private
