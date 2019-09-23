@@ -37,10 +37,7 @@ class Account
     end
 
     @balance += amount
-
-    #store the transaction
-    transaction = @transaction_class.new(DateTime.now.to_date, amount, 0, @balance)
-    @transaction_list.push(transaction)
+    create_transaction(amount, 0)
   end
 
   private
@@ -50,5 +47,10 @@ class Account
 
   def is_negative?(amount)
     (amount < 0)? true : false
+  end
+
+  def create_transaction(credit, debit)
+    date_now = DateTime.now.to_date
+    @transaction_list.push(@transaction_class.new(date_now, credit, debit, @balance))
   end
 end
