@@ -1,9 +1,9 @@
 class Account
   attr_reader :balance
 
-  INITIAL_BALANCE = 0;
+  DEFAULT_BALANCE = 0;
 
-  def initialize(initial_balance = INITIAL_BALANCE)
+  def initialize(initial_balance = DEFAULT_BALANCE)
     @balance = initial_balance
   end
 
@@ -30,7 +30,7 @@ class Account
       puts "Can not deposit negative amount"
       return
     end
-    
+
     @balance += amount
   end
 
