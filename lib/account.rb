@@ -47,6 +47,12 @@ class Account
       return
     end
 
+    iterate_transactions
+  end
+
+  private
+
+  def iterate_transactions
     puts "date || credit || debit || balance"
 
     @transaction_list.reverse_each do |transaction|
@@ -56,7 +62,6 @@ class Account
     end
   end
 
-  private
   def enough_balance?(amount)
     (amount <= @balance)? true : false
   end
