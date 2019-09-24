@@ -1,5 +1,6 @@
-class Records
+# frozen_string_literal: true
 
+class Records
   def initialize(transaction_class = Transaction)
     @transaction_list = []
     @transaction_class = transaction_class
@@ -34,5 +35,4 @@ class Records
   def formatter(attribute)
     return format('%.2f', attribute) + ' ' unless attribute.nil?
   end
-
 end

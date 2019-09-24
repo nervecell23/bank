@@ -4,10 +4,10 @@ require 'account'
 require 'date'
 
 describe Account do
-  let(:records_inst_double){ double("records_inst_double") }
+  let(:records_inst_double) { double('records_inst_double') }
   let(:subject) { Account.new(1000.0, records_inst_double) }
 
-  before(:each){ allow(records_inst_double).to receive(:create_transaction) }
+  before(:each) { allow(records_inst_double).to receive(:create_transaction) }
 
   it "responds to 'balance' attribute" do
     expect(subject).to have_attributes(balance: 1000.0)
@@ -43,7 +43,8 @@ describe Account do
     it 'creates transaction record for withdraw' do
       subject.withdraw(200.0)
       expect(records_inst_double).to have_received(:create_transaction).with(
-        instance_of(DateTime), nil, 200.0, 800.0)
+        instance_of(DateTime), nil, 200.0, 800.0
+      )
     end
   end
 
@@ -61,7 +62,8 @@ describe Account do
     it 'creates transaction record for deposit' do
       subject.deposit(500.0)
       expect(records_inst_double).to have_received(:create_transaction).with(
-        instance_of(DateTime), 500.0, nil, 1500.0)
+        instance_of(DateTime), 500.0, nil, 1500.0
+      )
     end
   end
 end

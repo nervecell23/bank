@@ -52,5 +52,4 @@ class Account
   def enough_balance?(amount)
     amount <= @balance
   end
-
 end
