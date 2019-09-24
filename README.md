@@ -55,8 +55,9 @@ make withdraw of __amount__
 
 print a bank statement
 
-## Dependencies used
+## Dependencies & tools used
 
 - Rspec for testing
 - SimpleCov & SimpleCov-console for displaying test coverage
 - Pry for debugging
+- Rubocop for linter 
