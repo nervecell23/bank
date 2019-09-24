@@ -1,10 +1,12 @@
-require_relative "./transaction"
-require "date"
+# frozen_string_literal: true
+
+require_relative './transaction'
+require 'date'
 
 class Account
   attr_reader :balance
 
-  DEFAULT_BALANCE = 0.0;
+  DEFAULT_BALANCE = 0.0
 
   def initialize(initial_balance = DEFAULT_BALANCE, transaction_class = Transaction)
     @balance = initial_balance
@@ -13,17 +15,17 @@ class Account
   end
 
   def show_balance
-    puts "Your balance: #{"%.2f" % @balance}"
+    puts "Your balance: #{format('%.2f', @balance)}"
   end
 
   def withdraw(amount)
-    if !enough_balance?(amount)
-      puts "Not enough balance"
+    unless enough_balance?(amount)
+      puts 'Not enough balance'
       return
     end
 
-    if is_negative?(amount)
-      puts "Can not withdraw negative amount"
+    if amount.negative?
+      puts 'Can not withdraw negative amount'
       return
     end
 
@@ -32,8 +34,8 @@ class Account
   end
 
   def deposit(amount)
-    if is_negative?(amount)
-      puts "Can not deposit negative amount"
+    if amount.negative?
+      puts 'Can not deposit negative amount'
       return
     end
 
@@ -43,7 +45,7 @@ class Account
 
   def display_transactions
     if @transaction_list.empty?
-      puts "There is no transaction"
+      puts 'There is no transaction'
       return
     end
 
@@ -53,21 +55,17 @@ class Account
   private
 
   def iterate_transactions
-    puts "date || credit || debit || balance"
+    puts 'date || credit || debit || balance'
 
     @transaction_list.reverse_each do |transaction|
-      puts "#{transaction.transaction_date.strftime("%d/%m/%Y")} || "\
+      puts "#{transaction.transaction_date.strftime('%d/%m/%Y')} || "\
             "#{formatter(transaction.credit)}|| #{formatter(transaction.debit)}|| "\
-            "#{"%.2f" % transaction.balance}"
+            "#{format('%.2f', transaction.balance)}"
     end
   end
 
   def enough_balance?(amount)
-    (amount <= @balance)? true : false
-  end
-
-  def is_negative?(amount)
-    (amount < 0)? true : false
+    amount <= @balance
   end
 
   def create_transaction(credit, debit)
@@ -77,6 +75,6 @@ class Account
 
   # add a space after credit or debit if it is not nil
   def formatter(attribute)
-    return ("%.2f" % attribute) + " " unless attribute == nil
+    return format('%.2f', attribute) + ' ' unless attribute.nil?
   end
 end
