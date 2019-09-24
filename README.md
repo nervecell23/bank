@@ -1,8 +1,8 @@
 __bank__ is a class which simulates a bank account. Each instance of the class is a simulated bank account in which a user can have a balance, make deposit, make withdraw and print(display) a bank statement showing all transactions made so far.
 
-## Code structure
+## Approach & code structure
 
-The simulated bank account is implemented in __Account__ class in which several methods are implemented to change __balance__ attribute. A second class __Transaction__ is used to implement a single entry of transaction record. Instances of transactions are created and stored in a container in Account class.
+The simulated bank account is implemented in __Account__ class in which several methods are implemented for different operations i.e. deposit, withdraw, show balance and print statement. Due to the fact that each transaction record is a self-contained object containing information of previous operation, it is better to use a second class __Transaction__ to implement a single entry of transaction record. Instances of transactions are created and stored in a container in Account class.
 
 ## User story implemented
 
@@ -60,4 +60,4 @@ print a bank statement
 - Rspec for testing
 - SimpleCov & SimpleCov-console for displaying test coverage
 - Pry for debugging
-- Rubocop for linter 
+- Rubocop for linter
