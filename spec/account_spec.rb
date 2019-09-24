@@ -50,21 +50,15 @@ describe Account do
 
   describe "#create_transaction" do
     let(:transaction_class_double){double("transaction_class")}
-    let(:transaction_inst_double){double("transaction_inst")}
     let(:new_account){Account.new(1000.0, transaction_class_double)}
-    let(:datetime){DateTime.now}
 
     it "creates transaction instance for deposit" do
-      expect(transaction_class_double).to receive(:new).with(datetime, 500.0, nil, 1500.0).
-        and_return(transaction_inst_double)
-
+      expect(transaction_class_double).to receive(:new).with(instance_of(DateTime), 500.0, nil, 1500.0)
       new_account.deposit(500.0)
     end
 
     it "create transaction instance for withdraw" do
-      expect(transaction_class_double).to receive(:new).with(datetime, nil, 450.0, 550.0).
-        and_return(transaction_inst_double)
-
+      expect(transaction_class_double).to receive(:new).with(instance_of(DateTime), nil, 450.0, 550.0)
       new_account.withdraw(450.0)
     end
   end
