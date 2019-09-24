@@ -2,7 +2,7 @@ __bank__ is a class which simulates a bank account. Each instance of the class i
 
 ## Approach & code structure
 
-The simulated bank account is implemented in __Account__ class in which several methods are implemented for different operations i.e. deposit, withdraw, show balance and print statement. Due to the fact that each transaction record is a self-contained object containing information of previous operation, it is better to use a second class __Transaction__ to implement a single entry of transaction record. Instances of transactions are created and stored in a container in Account class.
+The simulated bank account is implemented in __Account__ class in which several methods are implemented for basic operations i.e. deposit, withdraw, show balance. Records related operations are implemented in a second class __Records__. Separating storage of transaction records from aforementioned basic operations would make it easier for testing and future improvement. Also, It is considered that each transaction record is a self-contained object containing information of previous operation, it is better to use a third class __Transaction__ to implement a single entry of transaction record. Instances of transactions are created and stored in a container in __Records__ class.
 
 ## User story implemented
 
