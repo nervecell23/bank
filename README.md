@@ -42,15 +42,20 @@ To create a new account, run the following in your REPL:
 > require "./lib/account.rb"
 > new_account = Account.new(initial_balance) #initial balance is zero by default
 ```
+The following methods are available:
 
 - show_balance
+
 will display balance of the account
 
 - deposit(amount)
+
 make deposit of __amount__
 
 - withdraw(amount)
+
 make withdraw of __amount__
 
 - display_transactions
+
 print a bank statement
