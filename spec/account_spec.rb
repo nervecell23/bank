@@ -4,7 +4,11 @@ require 'account'
 require 'date'
 
 describe Account do
-  let(:subject) { Account.new(1000.0) }
+  let(:records_inst_double){ double("records_inst_double") }
+  let(:subject) { Account.new(1000.0, records_inst_double) }
+
+  before(:each){ allow(records_inst_double).to receive(:create_transaction) }
+
   it "responds to 'balance' attribute" do
     expect(subject).to have_attributes(balance: 1000.0)
     # expect(subject.balance).to eq(0)
@@ -35,6 +39,12 @@ describe Account do
       expect { subject.withdraw(-1.0) }.to output("Can not withdraw negative amount\n").to_stdout
       expect(subject.balance).to eq(1000.0)
     end
+
+    it 'creates transaction record for withdraw' do
+      subject.withdraw(200.0)
+      expect(records_inst_double).to have_received(:create_transaction).with(
+        instance_of(DateTime), nil, 200.0, 800.0)
+    end
   end
 
   describe '#deposit' do
@@ -47,26 +57,11 @@ describe Account do
       expect { subject.deposit(-1.0) }.to output("Can not deposit negative amount\n").to_stdout
       expect(subject.balance).to eq(1000.0)
     end
-  end
 
-  describe '#create_transaction' do
-    let(:transaction_class_double) { double('transaction_class') }
-    let(:new_account) { Account.new(1000.0, transaction_class_double) }
-
-    it 'creates transaction instance for deposit' do
-      expect(transaction_class_double).to receive(:new).with(instance_of(DateTime), 500.0, nil, 1500.0)
-      new_account.deposit(500.0)
-    end
-
-    it 'create transaction instance for withdraw' do
-      expect(transaction_class_double).to receive(:new).with(instance_of(DateTime), nil, 450.0, 550.0)
-      new_account.withdraw(450.0)
-    end
-  end
-
-  describe '#display_transactions' do
-    it 'display error notice when there is no transaction' do
-      expect { subject.display_transactions }.to output("There is no transaction\n").to_stdout
+    it 'creates transaction record for deposit' do
+      subject.deposit(500.0)
+      expect(records_inst_double).to have_received(:create_transaction).with(
+        instance_of(DateTime), 500.0, nil, 1500.0)
     end
   end
 end

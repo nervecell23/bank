@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative './transaction'
+require_relative './records'
 require 'date'
 
 class Account
@@ -8,10 +9,9 @@ class Account
 
   DEFAULT_BALANCE = 0.0
 
-  def initialize(initial_balance = DEFAULT_BALANCE, transaction_class = Transaction)
+  def initialize(initial_balance = DEFAULT_BALANCE, records = Records.new)
     @balance = initial_balance
-    @transaction_list = []
-    @transaction_class = transaction_class
+    @records = records
   end
 
   def show_balance
@@ -30,7 +30,7 @@ class Account
     end
 
     @balance -= amount
-    create_transaction(nil, amount)
+    @records.create_transaction(DateTime.now, nil, amount, @balance)
   end
 
   def deposit(amount)
@@ -40,41 +40,17 @@ class Account
     end
 
     @balance += amount
-    create_transaction(amount, nil)
+    @records.create_transaction(DateTime.now, amount, nil, @balance)
   end
 
   def display_transactions
-    if @transaction_list.empty?
-      puts 'There is no transaction'
-      return
-    end
-
-    iterate_transactions
+    @records.display_transactions
   end
 
   private
-
-  def iterate_transactions
-    puts 'date || credit || debit || balance'
-
-    @transaction_list.reverse_each do |transaction|
-      puts "#{transaction.transaction_date.strftime('%d/%m/%Y')} || "\
-            "#{formatter(transaction.credit)}|| #{formatter(transaction.debit)}|| "\
-            "#{format('%.2f', transaction.balance)}"
-    end
-  end
 
   def enough_balance?(amount)
     amount <= @balance
   end
 
-  def create_transaction(credit, debit)
-    date_now = DateTime.now
-    @transaction_list.push(@transaction_class.new(date_now, credit, debit, @balance))
-  end
-
-  # add a space after credit or debit if it is not nil
-  def formatter(attribute)
-    return format('%.2f', attribute) + ' ' unless attribute.nil?
-  end
 end
