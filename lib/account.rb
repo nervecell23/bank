@@ -50,7 +50,9 @@ class Account
     puts "date || credit || debit || balance"
 
     @transaction_list.reverse_each do |transaction|
-      puts "#{transaction.transaction_date.strftime("%d/%m/%Y")} || #{formatter(transaction.credit)}|| #{formatter(transaction.debit)}|| #{"%.2f" % transaction.balance}"
+      puts "#{transaction.transaction_date.strftime("%d/%m/%Y")} || "\
+            "#{formatter(transaction.credit)}|| #{formatter(transaction.debit)}|| "\
+            "#{"%.2f" % transaction.balance}"
     end
   end
 
