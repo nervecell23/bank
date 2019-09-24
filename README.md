@@ -35,7 +35,7 @@ After installation a user can interact with the code via REPL i.e. irb or pry
 To create a new account, run the following in your REPL:
 ```bash
 > require "./lib/account.rb"
-> new_account = Account.new(initial_balance) #initial balance is zero by default
+> new_account = Account.new([initial_balance]) #initial_balance is optional and is zero by default
 ```
 The following methods are available:
 
