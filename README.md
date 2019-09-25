@@ -24,10 +24,15 @@ Download repo and run:
 ```bash
 > bundle install
 ```
-For test, run:
+For Rspec test, run:
 ```bash
 > rspec
 ```
+For Linter test, run:
+```bash
+> rubocop
+```
+
 ## Usage
 
 After installation a user can interact with the code via REPL i.e. irb or pry
