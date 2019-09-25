@@ -5,7 +5,6 @@ require_relative './records'
 require 'date'
 
 class Account
-  attr_reader :balance
 
   DEFAULT_BALANCE = 0.0
 

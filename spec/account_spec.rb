@@ -9,13 +9,8 @@ describe Account do
 
   before(:each) { allow(records_inst_double).to receive(:create_transaction) }
 
-  it "responds to 'balance' attribute" do
-    expect(subject).to have_attributes(balance: 1000.0)
-    # expect(subject.balance).to eq(0)
-  end
-
   it 'can be added an initial balance when created' do
-    expect(subject.balance).to eq(1000.0)
+    expect{subject.show_balance}.to output("Your balance: 1000.00\n").to_stdout
   end
 
   describe '#show_balance' do
@@ -25,19 +20,14 @@ describe Account do
   end
 
   describe '#withdraw' do
-    it 'deducts the amount from balance' do
-      subject.withdraw(500.0)
-      expect(subject.balance).to eq(500.0)
-    end
-
     it 'does not proceed in case of not enough balance and show error notice' do
       expect { subject.withdraw(1001.0) }.to output("Not enough balance\n").to_stdout
-      expect(subject.balance).to eq(1000.0)
+      expect(records_inst_double).not_to have_received(:create_transaction)
     end
 
     it 'does not allow withdrawing negative amount and show error notice' do
       expect { subject.withdraw(-1.0) }.to output("Can not withdraw negative amount\n").to_stdout
-      expect(subject.balance).to eq(1000.0)
+      expect(records_inst_double).not_to have_received(:create_transaction)
     end
 
     it 'creates transaction record for withdraw' do
@@ -49,14 +39,9 @@ describe Account do
   end
 
   describe '#deposit' do
-    it 'add specified amount to balance' do
-      subject.deposit(200.0)
-      expect(subject.balance).to eq(1200.0)
-    end
-
     it 'does not allow deposit of negative amount and show error notice' do
       expect { subject.deposit(-1.0) }.to output("Can not deposit negative amount\n").to_stdout
-      expect(subject.balance).to eq(1000.0)
+      expect(records_inst_double).not_to have_received(:create_transaction)
     end
 
     it 'creates transaction record for deposit' do
