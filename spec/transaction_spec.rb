@@ -15,5 +15,4 @@ describe Transaction do
     expect(subject).to have_attributes(debit: nil)
     expect(subject).to have_attributes(balance: 1000)
   end
-
 end

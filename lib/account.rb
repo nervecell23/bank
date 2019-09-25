@@ -5,7 +5,6 @@ require_relative './records'
 require 'date'
 
 class Account
-
   DEFAULT_BALANCE = 0.0
 
   def initialize(initial_balance = DEFAULT_BALANCE, records = Records.new)

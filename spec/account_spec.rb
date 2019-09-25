@@ -10,7 +10,7 @@ describe Account do
   before(:each) { allow(records_inst_double).to receive(:create_transaction) }
 
   it 'can be added an initial balance when created' do
-    expect{subject.show_balance}.to output("Your balance: 1000.00\n").to_stdout
+    expect { subject.show_balance }.to output("Your balance: 1000.00\n").to_stdout
   end
 
   describe '#show_balance' do
