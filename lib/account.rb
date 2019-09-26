@@ -12,10 +12,6 @@ class Account
     @records = records
   end
 
-  def show_balance
-    puts "Your balance: #{format('%.2f', @balance)}"
-  end
-
   def withdraw(amount)
     unless enough_balance?(amount)
       puts 'Not enough balance'
