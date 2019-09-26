@@ -13,10 +13,7 @@ class Account
   end
 
   def withdraw(amount)
-    unless enough_balance?(amount)
-      puts 'Not enough balance'
-      return
-    end
+    return unless enough_balance?(amount)
 
     if amount.negative?
       puts 'Can not withdraw negative amount'
@@ -44,6 +41,11 @@ class Account
   private
 
   def enough_balance?(amount)
-    amount <= @balance
+    if amount > @balance
+      puts 'Not enough balance'
+      return false
+    else
+      return true
+    end
   end
 end
