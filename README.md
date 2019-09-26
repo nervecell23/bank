@@ -8,7 +8,6 @@ The simulated bank account is implemented in __Account__ class in which several 
 
 As a user - I can have an account  
 As a user - I can specify initial balance when create account  
-As a user - I can see balance  
 As a user - I can make withdraw  
 As a user - I can see error notice when withdraw more than balance  
 As a user - I can see error notice when withdraw negative amount  
@@ -43,10 +42,6 @@ To create a new account, run the following in your REPL:
 > new_account = Account.new([initial_balance]) #initial_balance is optional and is zero by default
 ```
 The following methods are available:
-
-- show_balance
-
-will display balance of the account
 
 - deposit(amount)
 
